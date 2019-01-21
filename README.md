@@ -1,2 +1,2 @@
-# Machine-Learning
-Formatting data and building machine learning algorithms in python
+# Statistical Learning
+Formatting data and building statistical and machine learning algorithms in python
