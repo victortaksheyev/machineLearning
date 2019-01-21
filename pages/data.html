@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+    <head>
+         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Share+Tech" rel="stylesheet">
+       
+              
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Audio</title>
+         <link rel="stylesheet" type="text/css" href="../css/style.css">
+      
+
+    </head>
+
+    <body>
+        <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <div class="container-fluid" style="max-width: 900px">
+             <nav class="navbar navbar-expand-lg navbar-light">
+                <a href="../index.html"><h1 class="navbar-brand my_custom">Victor Taksheyev</h1></a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="../index.html">Projects <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../imgs/extras/victorResume.pdf">Resume</a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+            <div class="jumbotron" style="background-color: #476aa3">
+                <h1 class="display-4 bold inline" style="color:white;">Graduate Admissions <br></brd>Data Analysis</h1><a href="https://github.com/victortaksheyev/3D_AudioConveter/blob/master/audio_converter.py"><button class="btn btn-outline-light siteLink">View Code</button></a>
+                <p class="lead" style="color: #e5eefc">Predicting students' chance at graduate school admission from multiple variables using regression and other forms of statistical reasoning.</p>
+                <hr class="my-4" style="background-color:#e5eefc">
+                <p style="color: #e5eefc"><span style="color:#ed9f71">Technologies used:</span> Python, linear + polynomial regression, backward elimination, SVR, Decision Tree, Random Forest </p>
+            </div>
+        
+              <h2>Separating Data</h2>
+            <div class="row pb-3 frame">
+                <div class="col-12">
+                    <div class="codeBlock" style="text-align: left"> 
+                        <pre class="prettyprint code">
+# Importing the libraries
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.linear_model import LinearRegression
+from sklearn.cross_validation import train_test_split
+
+# Kaggle dataset
+dataset = pd.read_csv('Admission_Predict.csv')
+X = dataset.iloc[:, 1:-1].values
+y = dataset.iloc[:, 8].values
+                        </pre>
+                    </div>
+                </div>
+                
+                <div class="col-12">
+                    <div class="consoleBlock">
+                        <pre class="code">
+X
+Out[332]: 
+array([[  1.  , 337.  , 118.  , ...,   4.5 ,   9.65,   1.  ],
+       [  1.  , 324.  , 107.  , ...,   4.5 ,   8.87,   1.  ],
+       [  1.  , 316.  , 104.  , ...,   3.5 ,   8.  ,   1.  ],
+       ...,
+       [  1.  , 330.  , 116.  , ...,   4.5 ,   9.45,   1.  ],
+       [  1.  , 312.  , 103.  , ...,   4.  ,   8.78,   0.  ],
+       [  1.  , 333.  , 117.  , ...,   4.  ,   9.66,   1.  ]])
+       
+y
+Out[334]: 
+array([0.92, 0.76, 0.72, 0.8 , 0.65, 0.9 , 0.75, 0.68, 0.5 , 0.45, 0.52,
+       0.84, 0.78, 0.62, 0.61, 0.54, 0.66, 0.65, 0.63, 0.62, 0.64, 0.7 ,
+                        </pre>
+                        
+                    </div>
+                    
+                </div>
+                
+                 <p class="center">Data serparated by dependent and independent variables</p>
+
+            </div>
+        
+        <h2> Visualizing relationships</h2>
+        <div class="row pb-3 frame">
+            <div class="col-12">
+                
+                 <img class="img-fluid" src="../imgs/data.png">
+            </div>    
+            <p class="center"> Multiple visible instances of linearility</p>
+        </div>
+        
+        <h2>Statistical Algorithms</h2>
+        <div class="row pb-3 frame">
+            <div class="col-12" style="text-align: left; ">
+                <h4 style="color: #ed9f71"> Linear Regression</h4>
+            </div>    
+            <div class="col-12">
+                <div class="codeBlock">
+                    <pre class="prettyprint code">
+X_train, X_test, y_train, y_test = train_test_split(X_opt, y, test_size = 0.2, random_state = 0)
+
+regressor2 = LinearRegression()
+regressor2.fit(X_train, y_train)
+y_pred = regressor2.predict(X_test)
+
+R2=r2_score(y_test,y_pred)
+MSE=mean_squared_error(y_test,y_pred)
+print(R2, MSE)
+                    </pre>
+                </div>
+            </div> 
+   
+            <div class="col-12">
+                <div class="consoleBlock">
+                    <pre class="code">
+R squared value: 0.73550 
+Mean squared error: 0.00480
+                    </pre>
+                </div>
+            </div> 
+            
+            
+        </div>
+        
+        <div class="row pb-3 frame">
+            <div class="col-12" style="text-align: left; ">
+                <h4 style="color: black"> Linear Regression with <span style="color: #ed9f71 ">Backward Elimination</span> </h4>
+            </div>    
+            <div class="col-12">
+                <div class="consoleBlock">
+                    <pre class="code">
+                            OLS Regression Results                            
+
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const         -1.2594      0.125    -10.097      0.000      -1.505      -1.014
+x1             0.0017      0.001      2.906      0.004       0.001       0.003
+x2             0.0029      0.001      2.680      0.008       0.001       0.005
+x3             0.0057      0.005      1.198      0.232      -0.004       0.015
+x4            -0.0033      0.006     -0.594      0.553      -0.014       0.008
+x5             0.0224      0.006      4.034      0.000       0.011       0.033
+x6             0.1189      0.012      9.734      0.000       0.095       0.143
+x7             0.0245      0.008      3.081      0.002       0.009       0.040
+==============================================================================
+                    </pre>
+                </div>
+            </div> 
+   <p class="center"> Columns 3 and 4 will be removed due to P > maxmimum significance</p>
+            <div class="col-12">
+                <div class="codeBlock">
+                
+                </div>
+                
+                
+            </div> 
+            
+            
+        </div>
+        
+         <h1 class="display-4 bold inline" style="color:black;">In development...</h1>
+        
+        
+        
+            
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+            </div>
+    </body>
+</html>

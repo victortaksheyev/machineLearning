@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+    <head>
+         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Share+Tech" rel="stylesheet">
+       
+              
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Rocket Telemetry</title>
+         <link rel="stylesheet" type="text/css" href="../css/style.css">
+      
+
+    </head>
+
+    <body>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        
+        <div class="container-fluid" style="max-width: 900px">
+             <nav class="navbar navbar-expand-lg navbar-light">
+                <a href="../index.html"><h1 class="navbar-brand my_custom">Victor Taksheyev</h1></a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="../index.html">Projects <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../imgs/extras/victorResume.pdf">Resume</a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+            <div class="jumbotron" style="background-color:#e8a252">
+                <h1 class="display-4 bold inline" style="color:white;">Rocket Telemetry</h1><a href="https://github.com/victortaksheyev/rocketTelemetry/blob/master/telemetry.py"><button class="btn btn-outline-light siteLink">View Code</button></a>
+                <p class="lead" style="color: black">A python program that reads, parses, and visualizes rocket's sensor data in real-time. </p>
+                <hr class="my-4" style="background-color:#e5eefc">
+                <p style="color: #e5eefc"><span style="color: black">Technologies used:</span> Python, Matplotlib, Spyder, Arduino  </p>
+            </div>
+                
+            <h1>The Idea</h1>
+            <div class="row pb-3 frame">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 frame" style="display: block; margin:auto;">
+                        <img class="img-fluid myImage" src="https://www.spaceportamericacup.com/uploads/9/0/6/4/9064598/2018-sa-cup-1st-crop-14_orig.jpg">
+                        <p style="font-size: .8em; text-align:center"> <span style="color:#e8a252">source:</span>  Spaceport America Cup</p>
+                    </div>
+                
+                <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10" style="display: block; margin:auto;">
+                    <p>My university's rocketry team is competing in the Spaceport America Cup, and I'm working on the telemetry system for that rocket. The only requirement from the competition is to store the altimeter data on a micro sd card for judges to verify that our rocket reached 10,000 ft. However, I thought it would be cool to code a realistic telemetry panel that could be used to monitor the rocket as it flies in real-time.</p>
+                </div>
+            </div>
+            <div class="row pb-3 frame">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <img class="img-fluid myImage" src="http://mediad.publicbroadcasting.net/p/shared/npr/styles/x_large/nprshared/201805/152954759.jpg">
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <img class="img-fluid myImage" src="../imgs/telemetry/nasaTel.jpg">
+                </div>
+            </div>
+            <div class="row pb-3 frame" style="display: block; margin:auto;">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="text-align: center;">
+                    <p >Inspired by SpaceX and NASA telemetry visualization systems</p>
+                </div>
+            </div>
+            
+  
+            
+            <h1>Development</h1>
+            <h4> 1. Configuring Sensor</h4>
+            <div class="row pb-3" >
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="display: block; margin:auto;">
+                    <img class="img-fluid myImage" src="../imgs/telemetry/sensor.jpg">
+                </div>
+            </div>
+            <div class="row pb-3 frame">
+                <p> The sensor I'm using is not natively arduino-based. To be used, I had to install several arduino libraries to recognize and read data from it. Once I created a connection, it dumped long strings of unformatted data that I needed to process. To do so, I separated each sensor output into a string separated by commas. With every sample, a new string of data is added. </p>
+            </div>
+                <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8" style="display: block; margin:auto;">
+                    <img class="img-fluid myImage" src="../imgs/telemetry/datastring.png">
+                </div>
+            <p style="text-align:center">Formatted string outputting 10 sensor datapoints</p>
+      
+        
+            <h4> 2. Sending and Reading Data in Python</h4>
+            <div class="row pb-3 frame">
+                <p> The strings of formatted data were displayed in Arduino's serial monitor. To send them to Python in real-time, I used the serial library which created a direct connection. The data was already formatted, so I parsed it and stored each number into its respective array.</p>
+            </div>
+              <div class="row pb-3 frame">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <img class="img-fluid myImage" src="../imgs/telemetry/1.png">
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <img class="img-fluid myImage" src="../imgs/telemetry/2.png">
+                </div>
+            </div>
+            <div class="row pb-3 frame" style="display: block; margin:auto;">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="text-align: center;">
+                    <p >Splitting and storing recieved data</p>
+                </div>
+            </div>
+            
+            <h4> 3. Visualizing Data</h4>
+            <div class="row pb-3 frame">
+                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 frame" style="display: block; margin:auto;">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe  width="560" height="315" src="https://www.youtube.com/embed/szwOc2nRzEs"></iframe>
+                        </div>
+                        <p>Gyro updating in real-time</p>
+                    </div>
+            </div>
+            <div class="row pb-3 frame">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 frame" style="display: block; margin:auto;">
+                            <img class="img-fluid myImage" src="../imgs/telemetry/allGraphs.png">
+                        <p>Telemetry display with all graphs loaded</p>
+                    </div>
+            </div>
+            <h4> 4. Configuring for Flight</h4>
+            <div class="row pb-3 frame">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 frame" style="display: block; margin:auto;">
+                    <p> The data from the sensor will be transmitted to my computer's serial using a radio. From there, the python program will take over and visualize the data. If the rocket explodes, data won't be lost as the transmition to my laptop will act as the third redundant system (after two internal sensors). A test flight will occur shortly and the competition will take place on June 18-22. I will be sure to update on progress/tests made!</p>
+                </div>
+            </div>
+                
+             
+            
+       
+            
+             <div class="row pb-3 frame" style="background-color: #e8a252">
+                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8" style="display: table; margin: auto;">
+                        <a href="https://github.com/victortaksheyev/rocketTelemetry/blob/master/telemetry.py"><button style="margin-top:5%;" class="btn btn-outline-light siteLink">View Code</button></a>
+                    </div>
+                </div>
+             </div>
+
+    </body>
+</html>
